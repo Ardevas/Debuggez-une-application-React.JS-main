@@ -13,7 +13,14 @@ import Modal from "../../containers/Modal/modal";
 import { useData } from "../../contexts/DataContext/dataContext";
 
 const Page = () => {
-  const { last } = useData();
+  const { data } = useData();
+  const byDateDesc =
+    data?.focus?.length > 0
+      ? [...data.focus].sort((evtA, evtB) =>
+          new Date(evtA.date) < new Date(evtB.date) ? -1 : 1
+        )
+      : [];
+  const last = byDateDesc[byDateDesc.length - 1];
   return (
     <>
       <header>
@@ -119,7 +126,7 @@ const Page = () => {
       </main>
       <footer className="row">
         <div className="col presta">
-          <h3>Notre derniére prestation</h3>
+          <h3>Notre dernière prestation</h3>
           <EventCard
             imageSrc={last?.cover}
             title={last?.title}
