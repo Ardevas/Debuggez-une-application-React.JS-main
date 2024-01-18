@@ -13,14 +13,7 @@ import Modal from "../../containers/Modal/modal";
 import { useData } from "../../contexts/DataContext/dataContext";
 
 const Page = () => {
-  const { data } = useData();
-  const byDateDesc =
-    data?.focus?.length > 0
-      ? [...data.focus].sort((evtA, evtB) =>
-          new Date(evtA.date) < new Date(evtB.date) ? -1 : 1
-        )
-      : [];
-  const last = byDateDesc[byDateDesc.length - 1];
+  const { last } = useData();
   return (
     <>
       <header>
