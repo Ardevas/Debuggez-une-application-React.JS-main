@@ -14,9 +14,6 @@ const EventList = () => {
   const [type, setType] = useState();
   const [currentPage, setCurrentPage] = useState(1);
 
-  console.log("data?.events:", data?.events);
-  console.log("type:", type);
-
   const filteredEvents = (data?.events || [])
     .filter((event) => !type || event.type === type)
     .slice((currentPage - 1) * PER_PAGE, currentPage * PER_PAGE);
