@@ -41,7 +41,13 @@ const Form = ({ onSuccess, onError }) => {
             titleEmpty
             required
           />
-          <Field placeholder="Entrez votre email" label="Email" required />
+          <input
+            type="email"
+            placeholder="Entrez votre email"
+            label="Email"
+            className="inputField"
+            required
+          />
           <Button type={BUTTON_TYPES.SUBMIT} disabled={sending}>
             {sending ? "En cours" : "Envoyer"}
           </Button>
