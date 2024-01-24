@@ -41,8 +41,8 @@ const Form = ({ onSuccess, onError }) => {
             titleEmpty
             required
           />
-          <input
-            type="email"
+          <Field
+            type={FIELD_TYPES.INPUT_MAIL}
             placeholder="Entrez votre email"
             label="Email"
             className="inputField"
