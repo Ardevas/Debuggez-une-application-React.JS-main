@@ -30,7 +30,12 @@ const Field = ({
       break;
     case FIELD_TYPES.TEXTAREA:
       component = (
-        <textarea name={name} data-testid="field-testid" required={required} />
+        <textarea
+          name={name}
+          data-testid="field-testid"
+          required={required}
+          placeholder={placeholder}
+        />
       );
       break;
     case FIELD_TYPES.INPUT_MAIL:

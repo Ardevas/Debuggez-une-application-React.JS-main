@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import Form from "./form";
 
 describe("When Events is created", () => {
@@ -24,6 +24,43 @@ describe("When Events is created", () => {
       await screen.findByText("En cours");
       await screen.findByText("Envoyer");
       expect(onSuccess).toHaveBeenCalled();
+    });
+  });
+
+  describe("and all fields are filled", () => {
+    it("calls the success action", async () => {
+      const onSuccess = jest.fn();
+      render(<Form onSuccess={onSuccess} />);
+
+      // Retrieve all form fields
+      const nomField = await screen.findByPlaceholderText("Entrez votre nom");
+      const prenomField = await screen.findByPlaceholderText(
+        "Entrez votre prénom"
+      );
+      const emailField = await screen.findByPlaceholderText(
+        "Entrez votre email"
+      );
+      const messageField = await screen.findByPlaceholderText(
+        "Entrez votre message"
+      );
+
+      // Simulate text entry in each field
+      await fireEvent.change(nomField, { target: { value: "Bardot" } });
+      await fireEvent.change(prenomField, { target: { value: "Thomas" } });
+      await fireEvent.change(emailField, {
+        target: { value: "thomas.bardot@openclassrooms-student.com" },
+      });
+      await fireEvent.change(messageField, {
+        target: { value: "Bonjour, ceci est un message de test." },
+      });
+
+      // Trigger a click on the submit button
+      fireEvent.click(screen.getByTestId("button-test-id"));
+
+      // Waiting for the success action to be called
+      await waitFor(() => {
+        expect(onSuccess).toHaveBeenCalled();
+      });
     });
   });
 });

@@ -6,7 +6,7 @@ import Button, { BUTTON_TYPES } from "../../components/Button/button";
 
 const mockContactApi = () =>
   new Promise((resolve) => {
-    setTimeout(resolve, 1000);
+    setTimeout(resolve, 500);
   });
 
 const Form = ({ onSuccess, onError }) => {
@@ -54,7 +54,7 @@ const Form = ({ onSuccess, onError }) => {
         </div>
         <div className="col">
           <Field
-            placeholder="message"
+            placeholder="Entrez votre message"
             label="Message"
             type={FIELD_TYPES.TEXTAREA}
             required
